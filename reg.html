@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация / Вход</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        select { padding: 5px; margin: 10px 0; }
+        button { padding: 10px 15px; font-size: 16px; }
+        .container { width: 300px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Регистрация / Вход</h2>
+        <!-- Форма регистрации -->
+        <div id="register-form">
+            <h3>Регистрация</h3>
+            <input type="text" id="username" placeholder="Ваше имя" required><br>
+            <select id="course">
+                <option value="1">1 курс</option>
+                <option value="2">2 курс</option>
+                <option value="3">3 курс</option>
+                <option value="4">4 курс</option>
+            </select><br>
+            <select id="specialty">
+                <option value="ИСИП">ИСИП</option>
+                <option value="СИСА">СИСА</option>
+                <option value="ПД">ПД</option>
+                <option value="БД">БД</option>
+            </select><br>
+            <select id="group">
+                <option value="01">Группа 01</option>
+                <option value="02">Группа 02</option>
+                <option value="03">Группа 03</option>
+                <option value="04">Группа 04</option>
+            </select><br>
+            <button onclick="register()">Зарегистрироваться</button>
+        </div>
+
+        <!-- Форма входа -->
+        <div id="login-form" style="display:none;">
+            <h3>Вход</h3>
+            <input type="text" id="login-username" placeholder="Ваше имя" required><br>
+            <button onclick="login()">Войти</button>
+        </div>
+    </div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('username').value;
+            const course = document.getElementById('course').value;
+            const specialty = document.getElementById('specialty').value;
+            const group = document.getElementById('group').value;
+
+            if (username && course && specialty && group) {
+                // Записать информацию в локальное хранилище (для примера)
+                localStorage.setItem('username', username);
+                localStorage.setItem('course', course);
+                localStorage.setItem('specialty', specialty);
+                localStorage.setItem('group', group);
+
+                // Перенаправление на страницу с расписанием
+                window.location.href = "schedule.html";
+            } else {
+                alert('Пожалуйста, заполните все поля.');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            if (username === localStorage.getItem('username')) {
+                window.location.href = "schedule.html";
+            } else {
+                alert('Пользователь не найден.');
+            }
+        }
+    </script>
+</body>
+</html>
