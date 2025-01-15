@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { margin-bottom: 10px; }
+        .schedule { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1 id="group-name"></h1>
+    <div class="schedule">
+        <h3>Расписание на сегодня:</h3>
+        <div id="schedule"></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const username = localStorage.getItem('username');
+            const group = localStorage.getItem('group');
+            const dayOfWeek = new Date().getDay();  // 0 - воскресенье, 6 - суббота
+
+            // Показать группу
+            document.getElementById('group-name').innerText = `Группа: ${group}`;
+
+            // Определение расписания
+            let scheduleText = '';
+            if (dayOfWeek === 0 || dayOfWeek === 6) {  // Воскресенье или суббота
+                scheduleText = 'Сегодня выходной!';
+            } else {
+                scheduleText = 'Здесь будет расписание на день';
+            }
+
+            document.getElementById('schedule').innerText = scheduleText;
+        };
+    </script>
+</body>
+</html>
